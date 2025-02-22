@@ -19,6 +19,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using TimeStamp;
 
+using Newtonsoft.Json;
+
+
 namespace AasxServerStandardBib.Services
 {
     public class AdminShellPackageEnvironmentService : IAdminShellPackageEnvironmentService
@@ -26,6 +29,7 @@ namespace AasxServerStandardBib.Services
         private readonly IAppLogger<AdminShellPackageEnvironmentService> _logger;
         private readonly Lazy<IAssetAdministrationShellService> _aasService;
         private AdminShellPackageEnv[] _packages;
+        
 
         public AdminShellPackageEnvironmentService(IAppLogger<AdminShellPackageEnvironmentService> logger, Lazy<IAssetAdministrationShellService> aasService)
         {

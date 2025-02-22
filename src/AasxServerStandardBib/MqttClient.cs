@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 using AdminShellNS;
 using MQTTnet;
-using MQTTnet.Client;
-using MQTTnet.Client.Options;
+
 
 /* Copyright (c) 2018-2019 Festo AG & Co. KG <https://www.festo.com/net/de_de/Forms/web/contact_international>, author: Michael Hoffmeister
    Copyright (c) 2019 Phoenix Contact GmbH & Co. KG <opensource@phoenixcontact.com>, author: Andreas Orzelski
@@ -48,7 +47,8 @@ namespace AasxMqttClient
                 .Build();
 
             //create MQTT Client and Connect using options above
-            IMqttClient mqttClient = new MqttFactory().CreateMqttClient();
+            //refactoring the MQTT code because it is using deprecated version of the package
+            var mqttClient = new MqttClientFactory().CreateMqttClient();
             await mqttClient.ConnectAsync(options);
 
             int iAASEnv = 0;
@@ -72,10 +72,9 @@ namespace AasxMqttClient
                                 var message2 = new MqttApplicationMessageBuilder()
                                                 .WithTopic("Submodel_" + sm.IdShort)
                                                 .WithPayload(JsonSerializer.Serialize(sm))
-                                                .WithExactlyOnceQoS()
-                                                .WithRetainFlag()
+                                                .WithQualityOfServiceLevel(MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce)
+                                                .WithRetainFlag(true)
                                                 .Build();
-
                                 await mqttClient.PublishAsync(message2);
                                 lastSubmodel++;
                                 iSubmodel = -1;

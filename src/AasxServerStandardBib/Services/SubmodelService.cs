@@ -24,6 +24,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using AasxAsynchronous;
 
 namespace AasxServerStandardBib.Services
 {
@@ -557,6 +558,15 @@ namespace AasxServerStandardBib.Services
 
                 _packageEnvService.setWrite(packageIndex, true);
                 Program.signalNewData(1);
+
+                //If asynchronous is enabled
+                if (Program.async)
+                {
+                    //async information
+                    var asyncOperation = new AasxAsynchronous.AasxAsynchronous();
+                    asyncOperation.SendSubmodelUpdateAsync(newSubmodel);
+
+                }
             }
         }
 
@@ -575,6 +585,15 @@ namespace AasxServerStandardBib.Services
 
                 _packageEnvService.setWrite(packageIndex, true);
                 Program.signalNewData(1);
+
+                //If asynchronous is enabled
+                if (Program.async)
+                {
+                    //async information
+                    var asyncOperation = new AasxAsynchronous.AasxAsynchronous();
+                    asyncOperation.SendSubmodelElementUpdateAsync(newSme);
+
+                }
             }
         }
 

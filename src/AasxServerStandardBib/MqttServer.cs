@@ -1,4 +1,4 @@
-﻿using MQTTnet;
+using MQTTnet;
 using MQTTnet.Server;
 using System.Threading.Tasks;
 
@@ -13,17 +13,18 @@ namespace AasxMqttServer
 {
     class MqttServer
     {
-        IMqttServer mqttServer;
+        MQTTnet.Server.MqttServer mqttServer;
 
         public MqttServer()
         {
-            mqttServer = new MqttFactory().CreateMqttServer();
+            var mqttServerOptions = new MqttServerOptionsBuilder().WithDefaultEndpoint().Build();
+            mqttServer = new MqttServerFactory().CreateMqttServer(mqttServerOptions);
         }
 
         public async Task MqttSeverStartAsync()
         {
             //Start a MQTT server.
-            await mqttServer.StartAsync(new MqttServerOptions());
+            await mqttServer.StartAsync();
         }
 
         public async Task MqttSeverStopAsync()
@@ -32,3 +33,4 @@ namespace AasxMqttServer
         }
     }
 }
+

@@ -340,6 +340,9 @@ namespace AasxServer
 
         static bool runOPC = false;
 
+        // For Async AAS implementation
+        public static bool async = false;
+
         public static string connectServer = "";
         public static string connectNodeName = "";
         static int connectUpdateRate = 1000;
@@ -395,6 +398,8 @@ namespace AasxServer
         {
             // ReSharper disable UnusedAutoPropertyAccessor.Local
 #pragma warning disable 8618
+
+            public bool     Async           { get; set; }
             public string   Host            { get; set; }
             public string   Port            { get; set; }
             public bool     Https           { get; set; }
@@ -558,7 +563,7 @@ namespace AasxServer
                 AasxHttpContextHelper.DataPath = a.DataPath;
                 AasContext.DataPath           = AasxHttpContextHelper.DataPath;
             }
-
+            Program.async      = a.Async;
             Program.runOPC     = a.Opc;
             Program.noSecurity = a.NoSecurity;
             Program.edit       = a.Edit;
@@ -1150,6 +1155,9 @@ namespace AasxServer
 
             var rootCommand = new RootCommand("serve AASX packages over different interfaces")
                               {
+                                  new Option<bool>(
+                                                   new[] {"--async"},
+                                                   "If set, enable asynchronous feature of AAS"),
                                   new Option<string>(
                                                      new[] {"--host"},
                                                      () => "localhost",
@@ -1157,6 +1165,7 @@ namespace AasxServer
                                   new Option<string>(
                                                      new[] {"--data-path"},
                                                      "Path to where the AASXs reside"),
+                                  
                                   new Option<bool>(
                                                    new[] {"--opc"},
                                                    "If set, starts the OPC server"),

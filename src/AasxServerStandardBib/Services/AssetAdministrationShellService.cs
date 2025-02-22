@@ -357,6 +357,14 @@ namespace AasxServerStandardBib.Services
 
             _packageEnvService.UpdateAssetAdministrationShellById(body, aasIdentifier);
 
+            //If asynchronous is enabled
+            if (Program.async)
+            {
+                //async information
+                var asyncOperation = new AasxAsynchronous.AasxAsynchronous();
+                asyncOperation.SendAASUpdateAsync(body);
+
+            }
         }
 
         public void UpdateAssetInformation(AssetInformation body, string aasIdentifier)
@@ -521,6 +529,14 @@ namespace AasxServerStandardBib.Services
             {
                 _logger.LogDebug($"Found submodel with id {submodelIdentifier} in AAS with id {aasIdentifier}");
                 _submodelService.ReplaceSubmodelById(submodelIdentifier, newSubmodel);
+                //If asynchronous is enabled
+                if (Program.async)
+                {
+                    //async information
+                    var asyncOperation = new AasxAsynchronous.AasxAsynchronous();
+                    asyncOperation.SendSubmodelUpdateAsync(newSubmodel);
+
+                }
             }
             else
             {
@@ -536,6 +552,14 @@ namespace AasxServerStandardBib.Services
             {
                 _logger.LogDebug($"Found submodel with id {submodelIdentifier} in AAS with id {aasIdentifier}");
                 _submodelService.ReplaceSubmodelElementByPath(submodelIdentifier, idShortPath, newSme);
+                //If asynchronous is enabled
+                if (Program.async)
+                {
+                    //async information
+                    var asyncOperation = new AasxAsynchronous.AasxAsynchronous();
+                    asyncOperation.SendSubmodelElementUpdateAsync(newSme);
+
+                }
             }
             else
             {
@@ -550,6 +574,14 @@ namespace AasxServerStandardBib.Services
             {
                 _logger.LogDebug($"Found submodel with id {submodelIdentifier} in AAS with id {aasIdentifier}");
                 _submodelService.UpdateSubmodelById(submodelIdentifier, newSubmodel);
+                //If asynchronous is enabled
+                if (Program.async)
+                {
+                    //async information
+                    var asyncOperation = new AasxAsynchronous.AasxAsynchronous();
+                    asyncOperation.SendSubmodelUpdateAsync(newSubmodel);
+
+                }
             }
             else
             {
@@ -564,6 +596,14 @@ namespace AasxServerStandardBib.Services
             {
                 _logger.LogDebug($"Found submodel with id {submodelIdentifier} in AAS with id {aasIdentifier}");
                 _submodelService.UpdateSubmodelElementByPath(submodelIdentifier, idShortPath, newSme);
+                //If asynchronous is enabled
+                if (Program.async)
+                {
+                    //async information
+                    var asyncOperation = new AasxAsynchronous.AasxAsynchronous();
+                    asyncOperation.SendSubmodelElementUpdateAsync(newSme);
+
+                }
             }
             else
             {

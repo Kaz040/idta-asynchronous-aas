@@ -1,4 +1,4 @@
-﻿#define MICHA
+#define MICHA
 
 using AasxMqttClient;
 using AasxServerDB;
