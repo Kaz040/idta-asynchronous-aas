@@ -575,7 +575,6 @@ namespace AasxServerStandardBib.Services
             if (_packageEnvService.IsSubmodelPresent(submodelIdentifier, out ISubmodel _, out int packageIndex))
             {
                 var submodelElement = GetSubmodelElementByPath(submodelIdentifier, idShortPath);
-
                 //Verify the body first
                 _verificationService.VerifyRequestBody(newSme);
 
@@ -590,6 +589,7 @@ namespace AasxServerStandardBib.Services
                 if (Program.async)
                 {
                     //async information
+                    newSme.Parent = submodelElement.Parent;
                     var asyncOperation = new AasxAsynchronous.AasxAsynchronous();
                     asyncOperation.SendSubmodelElementUpdateAsync(newSme);
 

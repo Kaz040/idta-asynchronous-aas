@@ -99,7 +99,6 @@ public class AasxAsynchronous
         var submodelElementDeserialized = Jsonization.Serialize.ToJsonObject(submodelElement); 
 
         var references = submodelElement.GetReference(); //Get submodel element reference to build into source.
-
         await SendMessage(submodelElementDeserialized, references);
 
     }
