@@ -64,28 +64,35 @@ public class AasxAsynchronous
         // get connection options
         var clientOptions = GetClientOptions();
         var mqttClient = new MqttClientFactory().CreateMqttClient(); //create a client object
-        await mqttClient.ConnectAsync(clientOptions); //connect to server
-
-        var payloadObject = new JsonObject
+        try
         {
-            ["id"] = Guid.NewGuid().ToString(),
-            ["source"] = GetSource(sourceInfo),
-            ["type"] = "org.factory-x.events.v1.ElementUpdateEvent",
-            ["datacontenttype"] = "application/json",
-            ["time"] = DateTime.Now.ToString(format: "yyyy-MM-DD\\THH:mm:ss\\z"),
-            ["data"] = payload
+            await mqttClient.ConnectAsync(clientOptions); //connect to server
 
-        }.ToJsonString();
+            var payloadObject = new JsonObject
+            {
+                ["id"] = Guid.NewGuid().ToString(),
+                ["source"] = GetSource(sourceInfo),
+                ["type"] = "org.factory-x.events.v1.ElementUpdateEvent",
+                ["datacontenttype"] = "application/json",
+                ["time"] = DateTime.Now.ToString(format: "yyyy-MM-DD\\THH:mm:ss\\z"),
+                ["data"] = payload
 
-        var message = new MqttApplicationMessageBuilder()
-            .WithTopic("events")
-            .WithPayload(payloadObject)
-            .Build();
-        Console.WriteLine("Publish a Message");
-        await mqttClient.PublishAsync(message);
-        Console.WriteLine("Publish a Message Succeed");
+            }.ToJsonString();
 
-        await mqttClient.DisconnectAsync();
+            var message = new MqttApplicationMessageBuilder()
+                .WithTopic("events")
+                .WithPayload(payloadObject)
+                .Build();
+            Console.WriteLine("Publish a Message");
+            await mqttClient.PublishAsync(message);
+            Console.WriteLine("Publish a Message Succeed");
+
+            await mqttClient.DisconnectAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
     }
     public async Task SendSubmodelElementUpdateAsync(ISubmodelElement submodelElement)
     {

@@ -25,4 +25,5 @@ EXPOSE 5001/udp
 COPY --from=build-env /out/AasxServerBlazor/ /AasxServerBlazor/
 COPY ./content-for-demo/ /AasxServerBlazor/
 WORKDIR /AasxServerBlazor
-ENTRYPOINT ["/bin/bash", "-c", "./startForDemo.sh"]
+#ENTRYPOINT ["/bin/bash", "-c", "./startForDemo.sh"]
+ENTRYPOINT ["dotnet", "AasxServerBlazor.dll", "--secret-string-api", "1234", "--data-path", "./aasxs", "--host", "0.0.0.0"]

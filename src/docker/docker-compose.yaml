@@ -5,6 +5,7 @@ services:
     build:
       context: ./../..
       dockerfile: ./src/docker/Dockerfile-AasxServerBlazor
+    image: ghcr.io/kaz040/async-aas-server-provider
     restart: unless-stopped
     ports:
       - "5001:5001"
@@ -14,4 +15,4 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5001
       - ASPNETCORE_HTTP_PORTS=5001
-    command: --start-index 0 --no-security --edit --data-path /usr/share/aasxs --external-blazor http://+:5001
+    command: --start-index 0 --async --no-security --edit --data-path /usr/share/aasxs --external-blazor http://+:5001
