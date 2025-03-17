@@ -90,6 +90,24 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Update="aasx-samples\01_Festo.aasx">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="aasx-samples\02_Bosch.aasx">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="aasx-samples\07_PhoenixContact.aasx">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="aasx-samples\14_Siemens.aasx">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="aasx-samples\36_Murrelektronik.aasx">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="aasx-samples\Example_AAS_ServoDCMotor_21.aasx">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
         <None Update="LICENSE.TXT">
           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
           <CopyToPublishDirectory>Never</CopyToPublishDirectory>
