@@ -445,6 +445,15 @@ namespace AasxServerStandardBib.Services
         {
             _verificationService.VerifyRequestBody(newSubmodel);
             _packageEnvService.ReplaceSubmodelById(submodelIdentifier, newSubmodel);
+
+            // If asynchronous is enabled
+            if (Program.async)
+            {
+                // async information
+                var asyncOperation = new AasxAsynchronous.AasxAsynchronous();
+                asyncOperation.SendSubmodelUpdateAsync(newSubmodel).Wait();
+            }
+
         }
 
         public void ReplaceSubmodelElementByPath(string submodelIdentifier, string idShortPath, ISubmodelElement newSme)
