@@ -3,34 +3,55 @@ using System.Security.Authentication;
 using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using AasxServerStandardBib.Mqtt;
 using Extensions;
 using MQTTnet;
-
 
 namespace AasxAsynchronous;
 
 public class AasxAsynchronous
 {
-    internal MqttClientOptions GetClientOptions()
+    internal static MqttClientOptions GetClientOptions()
     {
-        //var options = new MqttClientOptionsBuilder()
-        //    .WithClientId("AASXPackageXplorer MQTT Client")
-        //    .WithTcpServer("localhost", 1883)
-        //    .Build();
+        var settings = MqttSettings.LoadSettings();
 
-        var options = new MqttClientOptionsBuilder().WithWebSocketServer(o => o.WithUri("wss://mqttbroker.factory-x.catena-x.net:443")).WithTlsOptions(o => {
-            // The used public broker sometimes has invalid certificates. This sample accepts all
-            // certificates. This should not be used in live environments.
-            o.WithCertificateValidationHandler(_ => true);
+        var useWebSocket = settings.Address?.StartsWith("ws", StringComparison.OrdinalIgnoreCase) ?? false;
+        var sslProtocolSpecified = Enum.TryParse<SslProtocols>(settings.SslProtocol, ignoreCase: true, out var sslProtocol);
 
-            // The default value is determined by the OS. Set manually to force version.
-            o.WithSslProtocols(SslProtocols.Tls12);
-        })
-        .WithCredentials(username: "fx-subscriber", password: "password")
-        .WithClientId("IDTA AASX server asynchronous function")
-        .Build();
+        var builder = new MqttClientOptionsBuilder();
 
-        return options;
+        if (useWebSocket)
+        {
+            builder.WithWebSocketServer(o => o.WithUri($"{settings.Address}:{settings.Port}"));
+        }
+        else
+        {
+            builder.WithTcpServer(settings.Address, settings.Port);
+        }
+
+        if (settings.UseTls.HasValue && settings.UseTls.Value && sslProtocolSpecified)
+        {
+            builder.WithTlsOptions(o =>
+            {
+                // The used public broker sometimes has invalid certificates. This sample accepts all
+                // certificates. This should not be used in live environments.
+                o.WithCertificateValidationHandler(_ => true);
+                // The default value is determined by the OS. Set manually to force version.
+                o.WithSslProtocols(sslProtocol);
+            });
+        }
+
+        if (!string.IsNullOrEmpty(settings.Username))
+        {
+            builder.WithCredentials(username: settings.Username, password: settings.Password);
+        }
+
+        if (settings.ClientId is not null)
+        {
+            builder.WithClientId(settings.ClientId);
+        }
+
+        return builder.Build();
     }
 
     private static string GetSource(IReference? reference)
@@ -46,12 +67,12 @@ public class AasxAsynchronous
         {
             if (item.Type.ToString() is not null and "AssetAdministrationShells")
             {
-                var aasId = Convert.ToBase64String(Encoding.UTF8.GetBytes((string)item.Value));
+                var aasId = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Value));
                 source = $"uri:aas:shells/{aasId}";
             }
             else if (item.Type.ToString() is not null and "Submodel")
             {
-                var submodelId = Convert.ToBase64String(Encoding.UTF8.GetBytes((string)item.Value));
+                var submodelId = Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Value));
                 source = source.Contains("uri:aas:shells") ? $"{source}/submodels/{submodelId}" : $"uri:aas:submodels/{submodelId}";
             }
             else if (item.Type.ToString() is not null and not "AssetAdministrationShells" and not "Submodel")
@@ -59,8 +80,27 @@ public class AasxAsynchronous
                 source = source.Contains("submodel-elements") ? $"{source}.{item.Value}" : $"{source}/submodel-elements/{item.Value}";
             }
         }
+
         return source;
     }
+
+    private static string GetId(IReference? reference)
+    {
+        foreach (var item in reference.Keys)
+        {
+            if (item.Type.ToString() is not null and "AssetAdministrationShells")
+            {
+                return Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Value));
+            }
+            else if (item.Type.ToString() is not null and "Submodel")
+            {
+                return Convert.ToBase64String(Encoding.UTF8.GetBytes(item.Value));
+            }
+        }
+
+        return "unknown";
+    }
+
 
     public async Task SendMessage(AasxEvents eventType, JsonObject payload, Reference? sourceInfo)
     {
@@ -76,7 +116,7 @@ public class AasxAsynchronous
                 ["specversion"] = "1.0",
                 ["id"] = Guid.NewGuid().ToString(),
                 ["source"] = GetSource(sourceInfo),
-                ["subject"] = eventType.ToString(),
+                ["subject"] = GetId(sourceInfo),
                 ["type"] = $"org.factory-x.events.v1.{eventType.ToString()}",
                 ["datacontenttype"] = "application/json",
                 ["time"] = DateTime.UtcNow.ToString(format: "yyyy-MM-dd\\THH:mm:ss\\Z"),

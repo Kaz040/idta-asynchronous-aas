@@ -9,7 +9,7 @@ MIT License
 MQTTnet Copyright (c) 2016-2019 Christian Kratky
 */
 
-namespace AasxMqttServer
+namespace AasxServerStandardBib.Mqtt
 {
     class MqttServer
     {

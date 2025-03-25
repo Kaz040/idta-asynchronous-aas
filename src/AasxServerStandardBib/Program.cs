@@ -1,5 +1,4 @@
 using AasOpcUaServer;
-using AasxMqttServer;
 using AasxServerDB;
 using AasxRestServerLibrary;
 using AdminShellNS;
@@ -41,6 +40,7 @@ namespace AasxServer
     using System.Text.Json;
     using System.Text.Json.Serialization;
     using AasxServerDB.Entities;
+    using AasxServerStandardBib.Mqtt;
     using AasxTimeSeries;
     using Microsoft.IdentityModel.Tokens;
 
@@ -2233,7 +2233,7 @@ namespace AasxServer
                              {
                                  try
                                  {
-                                     await AasxMqttClient.MqttClient.StartAsync(env);
+                                     await MqttClient.StartAsync(env);
                                  }
                                  catch (Exception)
                                  {
