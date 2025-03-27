@@ -1,0 +1,16 @@
+{
+  "specversion": "1.0",
+  "id": "b8378d0a-5b8d-474e-8d73-1f9e6be62e83",
+  "source": "uri:aas:submodels/d3d3LmNvbXBhbnkuY29tL2lkcy9zbS82NTYzXzUwNzJfNzA5MV80MjY3/submodel-elements/SoftwareRevision",
+  "subject": "d3d3LmNvbXBhbnkuY29tL2lkcy9zbS82NTYzXzUwNzJfNzA5MV80MjY3",
+  "type": "org.factory-x.events.v1.SubmodelElementChanged",
+  "datacontenttype": "application/json",
+  "time": "2025-03-19T12:02:09Z",
+  "dataschema": "https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.1.0#/components/schemas/Property",
+  "data": {
+    "idShort": "SoftwareRevision",
+    "valueType": "xs:string",
+    "value": "2.0",
+    "modelType": "Property"
+  }
+}

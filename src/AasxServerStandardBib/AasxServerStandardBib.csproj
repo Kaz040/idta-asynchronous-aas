@@ -33,6 +33,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
         <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.6.2" />
         <PackageReference Include="MQTTnet" Version="5.0.1.1416" />
         <PackageReference Include="MQTTnet.Server" Version="5.0.1.1416" />

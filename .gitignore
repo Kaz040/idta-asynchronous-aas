@@ -326,3 +326,4 @@ Grapevine/*
 /src/AasxServerStandardBib/AdminShell.cs.old
 /src/AasxServerBlazor/temp.aasx
 /plantuml
+/src/AasxServerBlazor/appsettings.Development.json

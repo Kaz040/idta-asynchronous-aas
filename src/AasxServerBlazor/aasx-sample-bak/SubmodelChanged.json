@@ -1,0 +1,398 @@
+{
+  "specversion": "1.0",
+  "id": "1f0176c4-d926-4eb2-98ef-ba28f63dc500",
+  "source": "uri:aas:submodels/d3d3LmNvbXBhbnkuY29tL2lkcy9zbS80MzQzXzUwNzJfNzA5MV8zMjQy",
+  "subject": "SubmodelChanged",
+  "type": "org.factory-x.events.v1.SubmodelChanged",
+  "datacontenttype": "application/json",
+  "time": "2025-03-18T11:33:38Z",
+  "dataschema": "https://api.swaggerhub.com/domains/Plattform_i40/Part1-MetaModel-Schemas/V3.1.0#/components/schemas/Submodel",
+  "data": {
+    "idShort": "Nameplate",
+    "id": "www.company.com/ids/sm/4343_5072_7091_3242",
+    "kind": "Instance",
+    "semanticId": {
+      "type": "ExternalReference",
+      "keys": [
+        {
+          "type": "GlobalReference",
+          "value": "https://www.hsu-hh.de/aut/aas/nameplate"
+        }
+      ]
+    },
+    "submodelElements": [
+      {
+        "category": "PARAMETER",
+        "idShort": "ManufacturerName",
+        "semanticId": {
+          "type": "ExternalReference",
+          "keys": [
+            {
+              "type": "ConceptDescription",
+              "value": "0173-1#02-AAO677#002"
+            }
+          ]
+        },
+        "valueType": "xs:string",
+        "value": "Festo AG \u0026 Co. KG",
+        "modelType": "Property"
+      },
+      {
+        "category": "PARAMETER",
+        "idShort": "ManufacturerProductDesignation",
+        "semanticId": {
+          "type": "ExternalReference",
+          "keys": [
+            {
+              "type": "ConceptDescription",
+              "value": "0173-1#02-AAW338#001"
+            }
+          ]
+        },
+        "valueType": "xs:string",
+        "value": "OVEL Vacuum generator",
+        "modelType": "Property"
+      },
+      {
+        "category": "PARAMETER",
+        "idShort": "PhysicalAddress",
+        "semanticId": {
+          "type": "ExternalReference",
+          "keys": [
+            {
+              "type": "ConceptDescription",
+              "value": "https://www.hsu-hh.de/aut/aas/physicaladdress"
+            }
+          ]
+        },
+        "value": [
+          {
+            "category": "PARAMETER",
+            "idShort": "CountryCode",
+            "semanticId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "ConceptDescription",
+                  "value": "0173-1#02-AAO730#001"
+                }
+              ]
+            },
+            "valueType": "xs:string",
+            "value": "DE",
+            "modelType": "Property"
+          },
+          {
+            "category": "PARAMETER",
+            "idShort": "Street",
+            "semanticId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "ConceptDescription",
+                  "value": "0173-1#02-AAO128#001"
+                }
+              ]
+            },
+            "valueType": "xs:string",
+            "value": "Ruiter Stra\u00DFe 82b",
+            "modelType": "Property"
+          },
+          {
+            "category": "PARAMETER",
+            "idShort": "Zip",
+            "semanticId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "ConceptDescription",
+                  "value": "0173-1#02-AAO129#002"
+                }
+              ]
+            },
+            "valueType": "xs:string",
+            "value": "73734",
+            "modelType": "Property"
+          },
+          {
+            "category": "PARAMETER",
+            "idShort": "CityTown",
+            "semanticId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "ConceptDescription",
+                  "value": "0173-1#02-AAO132#001"
+                }
+              ]
+            },
+            "valueType": "xs:string",
+            "value": "Esslingen-Berkheim",
+            "modelType": "Property"
+          },
+          {
+            "category": "PARAMETER",
+            "idShort": "StateCounty",
+            "semanticId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "ConceptDescription",
+                  "value": "0173-1#02-AAO133#002"
+                }
+              ]
+            },
+            "valueType": "xs:string",
+            "value": "Baden-W\u00FCrttemberg",
+            "modelType": "Property"
+          }
+        ],
+        "modelType": "SubmodelElementCollection"
+      },
+      {
+        "category": "PARAMETER",
+        "idShort": "ManufacturerProductFamily",
+        "semanticId": {
+          "type": "ExternalReference",
+          "keys": [
+            {
+              "type": "ConceptDescription",
+              "value": "0173-1#02-AAU731#001"
+            }
+          ]
+        },
+        "valueType": "xs:string",
+        "value": "OVEL-5-H-10-P-VQ4-UA-Z-C-A-V1PNLK-H3",
+        "modelType": "Property"
+      },
+      {
+        "category": "PARAMETER",
+        "idShort": "SerialNumber",
+        "semanticId": {
+          "type": "ExternalReference",
+          "keys": [
+            {
+              "type": "ConceptDescription",
+              "value": "0173-1#02-AAM556#002"
+            }
+          ]
+        },
+        "valueType": "xs:string",
+        "value": "JO43",
+        "modelType": "Property"
+      },
+      {
+        "category": "PARAMETER",
+        "idShort": "BatchNumber",
+        "semanticId": {
+          "type": "ExternalReference",
+          "keys": [
+            {
+              "type": "ConceptDescription",
+              "value": "0173-1#02-AAQ196#001"
+            }
+          ]
+        },
+        "valueType": "xs:string",
+        "value": "",
+        "modelType": "Property"
+      },
+      {
+        "category": "PARAMETER",
+        "idShort": "ProductCountryOfOrigin",
+        "semanticId": {
+          "type": "ExternalReference",
+          "keys": [
+            {
+              "type": "ConceptDescription",
+              "value": "0173-1#02-AAO841#001"
+            }
+          ]
+        },
+        "valueType": "xs:string",
+        "value": "DE",
+        "modelType": "Property"
+      },
+      {
+        "category": "PARAMETER",
+        "idShort": "YearOfConstruction",
+        "semanticId": {
+          "type": "ExternalReference",
+          "keys": [
+            {
+              "type": "ConceptDescription",
+              "value": "0173-1#02-AAP906#001"
+            }
+          ]
+        },
+        "valueType": "xs:integer",
+        "value": "2019",
+        "modelType": "Property"
+      },
+      {
+        "category": "PARAMETER",
+        "idShort": "Marking_CE",
+        "semanticId": {
+          "type": "ExternalReference",
+          "keys": [
+            {
+              "type": "ConceptDescription",
+              "value": "https://www.hsu-hh.de/aut/aas/productmarking"
+            }
+          ]
+        },
+        "value": [
+          {
+            "category": "PARAMETER",
+            "idShort": "CEQualificationPresent",
+            "semanticId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "ConceptDescription",
+                  "value": "0173-1#02-BAF053#008"
+                }
+              ]
+            },
+            "valueType": "xs:boolean",
+            "value": "1",
+            "valueId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "GlobalReference",
+                  "value": "0173-1#07-CAA016#001"
+                }
+              ]
+            },
+            "modelType": "Property"
+          },
+          {
+            "category": "PARAMETER",
+            "idShort": "File",
+            "semanticId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "ConceptDescription",
+                  "value": "0173-1#02-AAD005#008"
+                }
+              ]
+            },
+            "value": "/aasx/Nameplate/marking_ce.png",
+            "contentType": "image/png",
+            "modelType": "File"
+          }
+        ],
+        "modelType": "SubmodelElementCollection"
+      },
+      {
+        "category": "PARAMETER",
+        "idShort": "Marking_CRUUS",
+        "semanticId": {
+          "type": "ExternalReference",
+          "keys": [
+            {
+              "type": "ConceptDescription",
+              "value": "https://www.hsu-hh.de/aut/aas/productmarking"
+            }
+          ]
+        },
+        "value": [
+          {
+            "category": "PARAMETER",
+            "idShort": "CRUUSLabelingPresent",
+            "semanticId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "ConceptDescription",
+                  "value": "0173-1#02-AAR528#005"
+                }
+              ]
+            },
+            "valueType": "xs:boolean",
+            "value": "1",
+            "valueId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "GlobalReference",
+                  "value": "0173-1#07-CAA016#001"
+                }
+              ]
+            },
+            "modelType": "Property"
+          },
+          {
+            "category": "PARAMETER",
+            "idShort": "File",
+            "semanticId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "ConceptDescription",
+                  "value": "0173-1#02-AAD005#008"
+                }
+              ]
+            },
+            "value": "/aasx/Nameplate/marking_cruus.jpg",
+            "contentType": "image/png",
+            "modelType": "File"
+          }
+        ],
+        "modelType": "SubmodelElementCollection"
+      },
+      {
+        "category": "PARAMETER",
+        "idShort": "Marking_RCM",
+        "semanticId": {
+          "type": "ExternalReference",
+          "keys": [
+            {
+              "type": "ConceptDescription",
+              "value": "https://www.hsu-hh.de/aut/aas/productmarking"
+            }
+          ]
+        },
+        "value": [
+          {
+            "category": "PARAMETER",
+            "idShort": "RCMLabelingPresent",
+            "semanticId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "ConceptDescription",
+                  "value": "0173-1#02-AAR528#005"
+                }
+              ]
+            },
+            "valueType": "xs:boolean",
+            "value": "1",
+            "modelType": "Property"
+          },
+          {
+            "category": "PARAMETER",
+            "idShort": "File",
+            "semanticId": {
+              "type": "ExternalReference",
+              "keys": [
+                {
+                  "type": "ConceptDescription",
+                  "value": "0173-1#02-AAD005#008"
+                }
+              ]
+            },
+            "value": "/aasx/Nameplate/marking_rcm.jpg",
+            "contentType": "image/png",
+            "modelType": "File"
+          }
+        ],
+        "modelType": "SubmodelElementCollection"
+      }
+    ],
+    "modelType": "Submodel"
+  }
+}
+

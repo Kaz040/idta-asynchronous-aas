@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using AasxMqttClient;
 using AdminShellNS;
 using MQTTnet;
 
@@ -25,7 +25,7 @@ MIT License
 MQTTnet Copyright (c) 2016-2019 Christian Kratky
 */
 
-namespace AasxMqttClient
+namespace AasxServerStandardBib.Mqtt
 {
     using System.Text.Json;
 
@@ -51,7 +51,7 @@ namespace AasxMqttClient
             var mqttClient = new MqttClientFactory().CreateMqttClient();
             await mqttClient.ConnectAsync(options);
 
-            int iAASEnv = 0;
+            var iAASEnv = 0;
             for (iAASEnv = 0; iAASEnv < package.Length; iAASEnv++)
             {
                 if (iAASEnv == lastAASEnv && package[iAASEnv] != null)
@@ -62,7 +62,7 @@ namespace AasxMqttClient
 
 
                         //publish submodels
-                        int iSubmodel = 0;
+                        var iSubmodel = 0;
                         foreach (var sm in package[iAASEnv].AasEnv.Submodels)
                         {
                             if (iSubmodel == lastSubmodel)
